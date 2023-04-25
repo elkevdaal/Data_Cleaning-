@@ -354,7 +354,7 @@ failures <- list(age_16_fail, OK_fail, OK_miss, IC_fail, Group_fail,
                  M3_RM_W_fail, M3_RM_r_fail, M3_5CST_fail, M3_5CSTp_fail, Post_move_fail, Post_sport_fail,
                  Post_roken_fail, Post_alc_fail)
 
-#replace all unwanted NA's with value 999 or string 'Missing'
+#replace all unwanted NA's with value 999 
 failures_2 <- lapply(failures, function(d) { d[is.na(d)] <- 999; d })
 
 #join failures into dataframe (including NAs) and arrange by ID
@@ -376,7 +376,7 @@ failures_df <- failures_df[ , !empty_col]                                       
 failures_df[failures_df == -99 | failures_df == -98 | failures_df == -97 | failures_df == -96 | failures_df == -95] <- NA
 
 rowSums(is.na(failures_df))                                                                 #count number of empty values in each row
-empty_row <- rowSums(is.na(failures_df)) == 63                                              #discover which rows only have empty values (56 instead of 67 because ID variable )
+empty_row <- rowSums(is.na(failures_df)) == 63                                              #discover which rows only have empty values 
 failures_df <- failures_df[!empty_row, ]                                          #delete empty rows out of failures_df
 
 #Export failures2_df into excel file
